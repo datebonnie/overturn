@@ -11,7 +11,6 @@ export const content = {
     links: [
       { label: "Pricing", href: "#pricing" },
       { label: "How it works", href: "#how-it-works" },
-      { label: "Sign in", href: "/signin" },
     ],
     cta: { label: "Join the waitlist", href: "#waitlist" },
   },
