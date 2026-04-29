@@ -39,18 +39,19 @@ All copy lives in `src/lib/content.ts`.
 
 ## Environment
 
-Copy `.env.local.example` → `.env.local` and fill once Supabase keys are
+Copy `.env.local.example` → `.env.local` and fill once Resend keys are
 provisioned. Until then, `/api/waitlist` logs payloads to the server
 console and returns success.
 
 ```
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+WAITLIST_NOTIFY_EMAIL=
+WAITLIST_FROM_EMAIL=         # optional; defaults to onboarding@resend.dev
 ```
 
-When connected, signups insert into a `waitlist` table with columns:
-`email`, `practice_name`, `role`, `specialty`, `claim_volume`, `source`,
-`created_at`.
+When configured, every waitlist signup is delivered as an email to
+`WAITLIST_NOTIFY_EMAIL` with the submitted fields in the body and the
+submitter's address in `Reply-To`.
 
 ## Deploy to Vercel
 
@@ -60,8 +61,8 @@ First-time deploy from this repo:
 npm i -g vercel
 vercel login
 vercel link             # answer prompts: scope, link to existing or create new
-vercel env add SUPABASE_URL production
-vercel env add SUPABASE_SERVICE_ROLE_KEY production
+vercel env add RESEND_API_KEY production
+vercel env add WAITLIST_NOTIFY_EMAIL production
 vercel --prod           # production deploy
 ```
 

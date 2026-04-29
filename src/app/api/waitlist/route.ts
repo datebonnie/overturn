@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
@@ -32,29 +32,101 @@ export async function POST(request: Request) {
 
   const record = {
     email,
-    practice_name: body.practiceName?.trim() ?? null,
+    practiceName: body.practiceName?.trim() ?? null,
     role: body.role ?? null,
     specialty: body.specialty ?? null,
-    claim_volume: body.claimVolume ?? null,
+    claimVolume: body.claimVolume ?? null,
     source: body.source ?? "landing",
-    created_at: new Date().toISOString(),
+    receivedAt: new Date().toISOString(),
   };
 
-  const supabase = getSupabaseAdmin();
+  const apiKey = process.env.RESEND_API_KEY;
+  const notifyTo = process.env.WAITLIST_NOTIFY_EMAIL;
+  const fromAddress = process.env.WAITLIST_FROM_EMAIL ?? "onboarding@resend.dev";
 
-  if (!supabase) {
-    console.log("[waitlist] Supabase not configured — record:", record);
+  if (!apiKey || !notifyTo) {
+    console.log("[waitlist] Resend not configured — record:", record);
     return NextResponse.json({ ok: true, stubbed: true });
   }
 
-  const { error } = await supabase.from("waitlist").insert(record);
-  if (error) {
-    console.error("[waitlist] Supabase insert error:", error);
+  try {
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: `Overturn Waitlist <${fromAddress}>`,
+      to: notifyTo,
+      replyTo: email,
+      subject: `New Overturn waitlist signup: ${email}`,
+      text: formatPlain(record),
+      html: formatHtml(record),
+    });
+
+    if (error) {
+      console.error("[waitlist] Resend send error:", error);
+      return NextResponse.json(
+        { error: "Could not save your spot. Try again." },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[waitlist] Unexpected error:", err);
     return NextResponse.json(
       { error: "Could not save your spot. Try again." },
       { status: 500 },
     );
   }
+}
 
-  return NextResponse.json({ ok: true });
+type Record = {
+  email: string;
+  practiceName: string | null;
+  role: string | null;
+  specialty: string | null;
+  claimVolume: string | null;
+  source: string;
+  receivedAt: string;
+};
+
+function formatPlain(r: Record): string {
+  const lines = [
+    `Email: ${r.email}`,
+    r.practiceName ? `Practice: ${r.practiceName}` : null,
+    r.role ? `Role: ${r.role}` : null,
+    r.specialty ? `Specialty: ${r.specialty}` : null,
+    r.claimVolume ? `Claim volume: ${r.claimVolume}` : null,
+    `Source: ${r.source}`,
+    `Received: ${r.receivedAt}`,
+  ].filter(Boolean);
+  return lines.join("\n");
+}
+
+function formatHtml(r: Record): string {
+  const row = (label: string, value: string | null) =>
+    value
+      ? `<tr><td style="padding:6px 12px 6px 0;color:#4d6685;font-weight:600;font-size:13px;">${label}</td><td style="padding:6px 0;color:#0a1628;font-size:14px;">${escapeHtml(value)}</td></tr>`
+      : "";
+
+  return `
+<div style="font-family:ui-sans-serif,system-ui,sans-serif;color:#0a1628;max-width:560px;">
+  <h2 style="margin:0 0 16px;font-size:20px;color:#0a1628;">New waitlist signup</h2>
+  <table style="border-collapse:collapse;font-size:14px;">
+    ${row("Email", r.email)}
+    ${row("Practice", r.practiceName)}
+    ${row("Role", r.role)}
+    ${row("Specialty", r.specialty)}
+    ${row("Claim volume", r.claimVolume)}
+    ${row("Source", r.source)}
+    ${row("Received", r.receivedAt)}
+  </table>
+</div>`.trim();
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
