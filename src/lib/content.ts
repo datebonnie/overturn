@@ -111,14 +111,17 @@ export const content = {
   pricing: {
     eyebrow: "PRICING",
     headline: "Pick the plan that fits your practice. Lock in founding rates for life.",
-    pillLabel: "Founding rate, locked for life",
+    pillLabel: "Founding rate",
+    foundingTotal: 15,
     plans: [
       {
+        slug: "solo",
         name: "Solo",
         price: "$75",
         period: "/month",
         strikethrough: "$149/month",
         description: "For solo practitioners and one-provider practices.",
+        spotsRemaining: 15,
         features: [
           "Up to 400 appeals per month",
           "1 user seat",
@@ -129,15 +132,17 @@ export const content = {
           "Email support",
           "14-day free trial, no credit card required",
         ],
-        cta: { label: "Join the waitlist", href: "#waitlist" },
+        cta: { label: "Claim a founding spot", href: "#waitlist" },
         featured: false,
       },
       {
+        slug: "practice",
         name: "Practice",
         price: "$199",
         period: "/month",
         strikethrough: "$399/month",
         description: "For multi-provider practices and busy billing teams.",
+        spotsRemaining: 15,
         features: [
           "Up to 2,000 appeals per month",
           "Up to 5 user seats",
@@ -148,15 +153,17 @@ export const content = {
           "Priority email support",
           "14-day free trial, no credit card required",
         ],
-        cta: { label: "Join the waitlist", href: "#waitlist" },
+        cta: { label: "Claim a founding spot", href: "#waitlist" },
         featured: true,
       },
       {
+        slug: "enterprise",
         name: "Enterprise",
         price: "$449",
         period: "/month",
         strikethrough: "$899/month",
         description: "For groups, multi-specialty, and scale.",
+        spotsRemaining: 15,
         features: [
           "Unlimited appeal generation",
           "Unlimited user seats",
@@ -170,12 +177,18 @@ export const content = {
           "Custom onboarding",
           "14-day free trial, no credit card required",
         ],
-        cta: { label: "Join the waitlist", href: "#waitlist" },
+        cta: { label: "Claim a founding spot", href: "#waitlist" },
         featured: false,
       },
     ],
+    activationNote:
+      "Sign up now to claim a founding spot. We activate and charge your membership on launch day — your rate is locked for life from there.",
+    roi: {
+      heading: "The math, not the marketing.",
+      body: "At a $250 average denied claim and a 60% overturn rate: 1 won appeal/month covers Solo. 2 cover Practice. 4 cover Enterprise. The typical small practice has 25–90 appealable denials sitting unworked every month.",
+    },
     footnote:
-      "Only 15 founding spots per plan. Once filled, standard rates apply: Solo $149/mo, Practice $399/mo, Enterprise $899/mo. Founding rates are locked for life.",
+      "Once 15 founding spots are filled per plan, standard rates apply: Solo $149/mo, Practice $399/mo, Enterprise $899/mo.",
   },
 
   faq: {
