@@ -38,6 +38,7 @@ yarn-error.log*
 
 # claude code session state
 .claude/worktrees/
+.claude/settings.local.json
 
 # typescript
 *.tsbuildinfo
