@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { content } from "@/lib/content";
@@ -14,7 +15,15 @@ export function Hero() {
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10 xl:gap-16">
         <Reveal className="lg:col-span-7 flex flex-col">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-500">
+          <Image
+            src="/logo.png"
+            alt=""
+            width={64}
+            height={64}
+            priority
+            className="h-14 w-14 sm:h-16 sm:w-16"
+          />
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-accent-500">
             {eyebrow}
           </p>
 
