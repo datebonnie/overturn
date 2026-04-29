@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -39,9 +40,20 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-navy-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
+          aria-label={`${content.brand.name} home`}
+          className="inline-flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
         >
-          {content.brand.name}
+          <Image
+            src="/logo.png"
+            alt=""
+            width={32}
+            height={32}
+            priority
+            className="h-8 w-8 flex-shrink-0"
+          />
+          <span className="text-xl font-bold tracking-tight text-navy-800">
+            {content.brand.name}
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

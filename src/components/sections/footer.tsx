@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { content } from "@/lib/content";
 
@@ -11,9 +12,19 @@ export function Footer() {
           <div>
             <Link
               href="/"
-              className="text-xl font-bold tracking-tight text-navy-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
+              aria-label={`${brand.name} home`}
+              className="inline-flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
             >
-              {brand.name}
+              <Image
+                src="/logo.png"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8 flex-shrink-0"
+              />
+              <span className="text-xl font-bold tracking-tight text-navy-800">
+                {brand.name}
+              </span>
             </Link>
             <p className="mt-3 max-w-xs text-base leading-relaxed text-slate-600">
               {footer.tagline}
