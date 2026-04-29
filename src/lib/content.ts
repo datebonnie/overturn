@@ -140,7 +140,12 @@ export const content = {
       {
         question: "Is this HIPAA compliant?",
         answer:
-          "Yes. We sign a BAA with every practice. Patient data is encrypted at rest and in transit, never used for model training, and stored in HIPAA-eligible infrastructure (Supabase Team, Vercel Enterprise, Anthropic API with BAA).",
+          "Yes — and we go further. We process patient data, we don't archive it. Your chart notes and denial PDFs are deleted within 24 hours of appeal generation. We retain only the appeal letter you approved and the metadata needed to track deadlines and outcomes. Everything is encrypted at rest and in transit, stored in HIPAA-eligible infrastructure with a signed BAA, and never used to train any model.",
+      },
+      {
+        question: "What patient data do you actually store?",
+        answer:
+          "Three things: (1) the appeal letter you approved, so you can resubmit or audit it later; (2) the metadata required for tracking — claim ID, payer, reason code, deadlines, outcome; (3) your account data — practice name, users, billing. Chart notes, denial PDFs, and any other source documents you upload are deleted within 24 hours of appeal generation. We do not maintain a long-term archive of patient clinical data.",
       },
       {
         question: "What payers do you support?",
