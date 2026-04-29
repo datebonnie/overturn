@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Overturn — marketing landing page
 
-## Getting Started
+Marketing site for **Overturn** (hioverturn.com). Next.js 15 (App Router,
+TypeScript strict, Tailwind v4), deployed to Vercel.
 
-First, run the development server:
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project layout
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/
+│   ├── layout.tsx              # Geist fonts, SEO metadata, OG image link
+│   ├── page.tsx                # Composes sections + JSON-LD (Org + FAQ)
+│   ├── globals.css             # Tailwind v4 theme tokens (navy + accent)
+│   ├── opengraph-image.tsx     # Generated 1200×630 OG image
+│   ├── robots.ts
+│   ├── sitemap.ts
+│   └── api/waitlist/route.ts   # POST handler — Supabase, console fallback
+├── components/
+│   ├── reveal.tsx              # Scroll fade-in wrapper
+│   ├── faq-item.tsx            # Accessible accordion item
+│   ├── waitlist-form-inline.tsx
+│   └── sections/               # nav, hero, problem, how-it-works, …
+├── hooks/use-reveal.ts         # IntersectionObserver
+└── lib/
+    ├── content.ts              # All page copy in one file
+    └── supabase.ts             # Server-only client, gated on env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All copy lives in `src/lib/content.ts`.
 
-## Learn More
+## Environment
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.local.example` → `.env.local` and fill once Supabase keys are
+provisioned. Until then, `/api/waitlist` logs payloads to the server
+console and returns success.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+When connected, signups insert into a `waitlist` table with columns:
+`email`, `practice_name`, `role`, `specialty`, `claim_volume`, `source`,
+`created_at`.
 
-## Deploy on Vercel
+## Deploy to Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+First-time deploy from this repo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm i -g vercel
+vercel login
+vercel link             # answer prompts: scope, link to existing or create new
+vercel env add SUPABASE_URL production
+vercel env add SUPABASE_SERVICE_ROLE_KEY production
+vercel --prod           # production deploy
+```
+
+Subsequent deploys: push to your linked Git remote (Vercel auto-deploys),
+or run `vercel --prod` from CLI.
+
+### Connect hioverturn.com
+
+```bash
+vercel domains add hioverturn.com
+vercel alias set <deployment-url> hioverturn.com
+vercel alias set <deployment-url> www.hioverturn.com
+```
+
+Then in your DNS provider, set:
+
+- `A  @       76.76.21.21`
+- `CNAME  www  cname.vercel-dns.com`
+
+(Or use Vercel nameservers if you want them to manage DNS.)
+
+Verify in the Vercel dashboard under **Domains** that the cert provisions.
