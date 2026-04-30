@@ -90,7 +90,7 @@ export const content = {
     headline: "Built for the practices the big platforms ignore.",
     features: [
       {
-        title: "Live in 10 minutes, not 6 months.",
+        title: "Live in 10 minutes, not 6 months",
         body: "No EHR integration project. No IT ticket. No vendor onboarding call. Sign up, upload your first denial, send your first appeal before your coffee gets cold.",
       },
       {
