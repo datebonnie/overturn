@@ -123,7 +123,7 @@ export const content = {
         description: "For solo practitioners and one-provider practices.",
         spotsRemaining: 15,
         features: [
-          "Up to 400 appeals per month",
+          "Up to 100 appeals per month",
           "1 user seat",
           "All major payers supported",
           "HIPAA-compliant infrastructure",
@@ -144,7 +144,7 @@ export const content = {
         description: "For multi-provider practices and busy billing teams.",
         spotsRemaining: 15,
         features: [
-          "Up to 2,000 appeals per month",
+          "Up to 400 appeals per month",
           "Up to 5 user seats",
           "All major payers supported",
           "HIPAA-compliant infrastructure",
