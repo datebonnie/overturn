@@ -103,7 +103,7 @@ export const content = {
       },
       {
         title: "Pricing that makes sense",
-        body: "Plans from $75/month. No per-claim fees. No setup costs. One overturned denial usually pays for months.",
+        body: "Plans from $225/quarter (about $75/month). No per-claim fees. No setup costs. One overturned denial usually pays for months.",
       },
     ],
   },
@@ -117,9 +117,10 @@ export const content = {
       {
         slug: "solo",
         name: "Solo",
-        price: "$75",
-        period: "/month",
-        strikethrough: "$149/month",
+        price: "$225",
+        period: "/quarter",
+        priceSubtext: "About $75/month, billed quarterly.",
+        strikethrough: "$447/quarter",
         description: "For solo practitioners and one-provider practices.",
         spotsRemaining: 15,
         features: [
@@ -130,17 +131,18 @@ export const content = {
           "Automatic deadline tracking",
           "Payer-specific formatting",
           "Email support",
-          "14-day free trial, no credit card required",
+          "Full refund before launch · 14-day refund window after launch",
         ],
-        cta: { label: "Claim a founding spot", href: "#waitlist" },
+        cta: { label: "Lock in $225/quarter", href: "#waitlist" },
         featured: false,
       },
       {
         slug: "practice",
         name: "Practice",
-        price: "$199",
-        period: "/month",
-        strikethrough: "$399/month",
+        price: "$597",
+        period: "/quarter",
+        priceSubtext: "About $199/month, billed quarterly.",
+        strikethrough: "$1,197/quarter",
         description: "For multi-provider practices and busy billing teams.",
         spotsRemaining: 15,
         features: [
@@ -151,17 +153,18 @@ export const content = {
           "Automatic deadline tracking",
           "Payer-specific formatting",
           "Priority email support",
-          "14-day free trial, no credit card required",
+          "Full refund before launch · 14-day refund window after launch",
         ],
-        cta: { label: "Claim a founding spot", href: "#waitlist" },
+        cta: { label: "Lock in $597/quarter", href: "#waitlist" },
         featured: true,
       },
       {
         slug: "enterprise",
         name: "Enterprise",
-        price: "$449",
-        period: "/month",
-        strikethrough: "$899/month",
+        price: "$1,347",
+        period: "/quarter",
+        priceSubtext: "About $449/month, billed quarterly.",
+        strikethrough: "$2,697/quarter",
         description: "For groups, multi-specialty, and scale.",
         spotsRemaining: 15,
         features: [
@@ -175,20 +178,20 @@ export const content = {
           "Priority phone and email support",
           "Dedicated account manager",
           "Custom onboarding",
-          "14-day free trial, no credit card required",
+          "Full refund before launch · 14-day refund window after launch",
         ],
-        cta: { label: "Claim a founding spot", href: "#waitlist" },
+        cta: { label: "Lock in $1,347/quarter", href: "#waitlist" },
         featured: false,
       },
     ],
     activationNote:
-      "Sign up now to claim a founding spot. We activate and charge your membership on launch day — your rate is locked for life from there.",
+      "Pay your founding quarter today to lock the rate forever. Service begins on launch day (by Q3 2026) — your first quarter starts then. Full refund anytime before launch.",
     roi: {
       heading: "The math, not the marketing.",
-      body: "At a $250 average denied claim and a 60% overturn rate: 1 won appeal/month covers Solo. 2 cover Practice. 4 cover Enterprise. The typical small practice has 25–90 appealable denials sitting unworked every month.",
+      body: "At a $250 average denied claim and a 60% overturn rate: 3 won appeals cover Solo's quarter. 8 cover Practice. 18 cover Enterprise. The typical small practice has 25–90 appealable denials sitting unworked every month.",
     },
     footnote:
-      "Once 15 founding spots are filled per plan, standard rates apply: Solo $149/mo, Practice $399/mo, Enterprise $899/mo.",
+      "Once 15 founding spots are filled per plan, standard rates apply: Solo $447/qtr, Practice $1,197/qtr, Enterprise $2,697/qtr. Founding rates are locked for life.",
   },
 
   faq: {
@@ -228,17 +231,27 @@ export const content = {
       {
         question: "Can I cancel anytime?",
         answer:
-          "Yes. Month-to-month, cancel in one click. Founding members keep their rate forever, even if they cancel and come back.",
+          "Yes. Cancel any time before your next quarter — no penalty, no questions. Founding members keep their rate forever, even if they cancel and come back later.",
+      },
+      {
+        question: "What if you don't launch by Q3 2026?",
+        answer:
+          "Every founding member gets a full automatic refund. No paperwork, no hassle. We're committing to a date, not asking you to take a leap of faith.",
+      },
+      {
+        question: "Why pay quarterly instead of monthly?",
+        answer:
+          "Two reasons. First, the prepay funds the build — you're not just a customer, you're an early backer of a tool that fights for your revenue. Second, quarterly billing means less administrative overhead for your billing team. Either way, you can cancel before any quarter renews.",
       },
     ],
   },
 
   finalCta: {
-    headline: "Stop writing appeals by hand.",
+    headline: "Join the founders. Save more money.",
     subhead:
-      "Join the waitlist. Only 15 founding spots per plan — locked for life.",
+      "15 founding spots per plan. Pay your first quarter to lock the rate for life. Launches by Q3 2026 — full refund if we miss it.",
     placeholder: "you@yourpractice.com",
-    button: "Join waitlist",
+    button: "Get launch updates",
     footnote: "We'll never spam you. Unsubscribe anytime.",
     success: "You're on the list. We'll reach out within 48 hours.",
   },

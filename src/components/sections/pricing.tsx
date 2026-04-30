@@ -162,6 +162,13 @@ function PlanCard({
           <span className={priceClasses}>{plan.price}</span>
           <span className={periodClasses}>{plan.period}</span>
         </div>
+        <p
+          className={`mt-2 text-sm ${
+            featured ? "text-navy-200" : "text-slate-500"
+          }`}
+        >
+          {plan.priceSubtext}
+        </p>
       </div>
 
       <p className={descriptionClasses}>{plan.description}</p>
