@@ -87,7 +87,7 @@ export const content = {
 
   whyItWins: {
     eyebrow: "WHY OVERTURN",
-    headline: "Built for the practices the big platforms ignore.",
+    headline: "The shortest path between a denial and a check.",
     features: [
       {
         title: "Live in 10 minutes, not 6 months",
