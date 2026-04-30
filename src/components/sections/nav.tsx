@@ -58,20 +58,20 @@ export function Nav() {
 
         <div className="hidden md:flex items-center gap-8">
           {content.nav.links.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
-          <Link
+          <a
             href={content.nav.cta.href}
             className="inline-flex items-center justify-center rounded-md bg-accent-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accent-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
           >
             {content.nav.cta.label}
-          </Link>
+          </a>
         </div>
 
         <button
@@ -94,23 +94,23 @@ export function Nav() {
           <ul className="flex flex-col gap-1">
             {content.nav.links.map((link) => (
               <li key={link.href}>
-                <Link
+                <a
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="block rounded-md px-3 py-3 text-base font-medium text-navy-700 hover:bg-navy-50"
                 >
                   {link.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
-          <Link
+          <a
             href={content.nav.cta.href}
             onClick={() => setOpen(false)}
             className="mt-3 inline-flex w-full items-center justify-center rounded-md bg-accent-500 px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-accent-600 transition-colors"
           >
             {content.nav.cta.label}
-          </Link>
+          </a>
         </div>
       ) : null}
     </header>

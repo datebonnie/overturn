@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { content } from "@/lib/content";
 import { Reveal } from "@/components/reveal";
@@ -27,19 +26,19 @@ export function Hero() {
           </p>
 
           <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <Link
+            <a
               href={primaryCta.href}
               className="inline-flex items-center justify-center rounded-md bg-accent-500 px-7 py-4 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 sm:text-lg"
             >
               {primaryCta.label}
-            </Link>
-            <Link
+            </a>
+            <a
               href={secondaryCta.href}
               className="group inline-flex items-center gap-2 text-base font-semibold text-navy-700 hover:text-navy-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 rounded-sm sm:text-lg"
             >
               {secondaryCta.label}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
+            </a>
           </div>
 
           <p className="mt-8 max-w-xl text-sm text-slate-500">{socialProof}</p>

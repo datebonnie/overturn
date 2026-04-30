@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Check } from "lucide-react";
 import { content } from "@/lib/content";
 import { Reveal } from "@/components/reveal";
@@ -54,12 +53,12 @@ export function Pricing() {
                 ))}
               </ul>
 
-              <Link
+              <a
                 href={plan.cta.href}
                 className="mt-9 inline-flex w-full items-center justify-center rounded-md bg-accent-500 px-6 py-4 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy-800 sm:text-lg"
               >
                 {plan.cta.label}
-              </Link>
+              </a>
             </div>
           </div>
         </Reveal>
