@@ -19,7 +19,7 @@ export const content = {
     eyebrow: "FOR SMALL MEDICAL PRACTICES",
     headline: "Stop letting insurers steal your revenue.",
     subheadline:
-      "Overturn turns denied claims into winning appeals in 60 seconds. Built for practices tired of fighting alone.",
+      "Overturn turns denied claims into winning appeals in 60 seconds. Built for practices that lose six figures a year to denied claims they never appeal.",
     primaryCta: { label: "Join the waitlist", href: "#waitlist" },
     secondaryCta: { label: "See how it works", href: "#how-it-works" },
     socialProof:
@@ -102,8 +102,8 @@ export const content = {
         body: "BAA included. Encrypted at rest and in transit. Your patient data never trains any model.",
       },
       {
-        title: "Pricing that makes sense",
-        body: "$199/month flat. No per-claim fees. No setup costs. One overturned denial pays for the year.",
+        title: "Built by operators, not by hospitals",
+        body: "Most healthtech is designed by people who've never written an appeal. Overturn was built by people who have. The workflow assumes you're under-resourced and angry — because you are.",
       },
     ],
   },
