@@ -131,7 +131,6 @@ export const content = {
           "Automatic deadline tracking",
           "Payer-specific formatting",
           "Email support",
-          "Full refund before launch · 14-day refund window after launch",
         ],
         cta: { label: "Lock in $225/quarter", href: "#waitlist" },
         featured: false,
@@ -153,7 +152,6 @@ export const content = {
           "Automatic deadline tracking",
           "Payer-specific formatting",
           "Priority email support",
-          "Full refund before launch · 14-day refund window after launch",
         ],
         cta: { label: "Lock in $597/quarter", href: "#waitlist" },
         featured: true,
@@ -178,14 +176,13 @@ export const content = {
           "Priority phone and email support",
           "Dedicated account manager",
           "Custom onboarding",
-          "Full refund before launch · 14-day refund window after launch",
         ],
         cta: { label: "Lock in $1,347/quarter", href: "#waitlist" },
         featured: false,
       },
     ],
     activationNote:
-      "Pay your founding quarter today to lock the rate forever. Service begins on launch day (by Q3 2026) — your first quarter starts then. Full refund anytime before launch.",
+      "Pay your founding quarter today to lock the rate forever. Service begins on launch day (by Q3 2026) — your first quarter starts then.",
     roi: {
       heading: "The math, not the marketing.",
       body: "At a $250 average denied claim and a 60% overturn rate: 3 won appeals cover Solo's quarter. 8 cover Practice. 18 cover Enterprise. The typical small practice has 25–90 appealable denials sitting unworked every month.",
@@ -234,11 +231,6 @@ export const content = {
           "Yes. Cancel any time before your next quarter — no penalty, no questions. Founding members keep their rate forever, even if they cancel and come back later.",
       },
       {
-        question: "What if you don't launch by Q3 2026?",
-        answer:
-          "Every founding member gets a full automatic refund. No paperwork, no hassle. We're committing to a date, not asking you to take a leap of faith.",
-      },
-      {
         question: "Why pay quarterly instead of monthly?",
         answer:
           "Two reasons. First, the prepay funds the build — you're not just a customer, you're an early backer of a tool that fights for your revenue. Second, quarterly billing means less administrative overhead for your billing team. Either way, you can cancel before any quarter renews.",
@@ -249,7 +241,7 @@ export const content = {
   finalCta: {
     headline: "Join the founders. Save more money.",
     subhead:
-      "15 founding spots per plan. Pay your first quarter to lock the rate for life. Launches by Q3 2026 — full refund if we miss it.",
+      "15 founding spots per plan. Pay your first quarter to lock the rate for life. Launches by Q3 2026.",
     placeholder: "you@yourpractice.com",
     button: "Get launch updates",
     footnote: "We'll never spam you. Unsubscribe anytime.",
