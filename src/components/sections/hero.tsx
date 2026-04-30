@@ -18,12 +18,12 @@ export function Hero() {
           <Image
             src="/logo.png"
             alt=""
-            width={500}
-            height={500}
+            width={128}
+            height={128}
             priority
-            className="h-auto w-full max-w-[240px] sm:max-w-[360px] lg:max-w-[500px]"
+            className="h-24 w-24 sm:h-28 sm:w-28 lg:h-32 lg:w-32"
           />
-          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-accent-500">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-accent-500">
             {eyebrow}
           </p>
 
