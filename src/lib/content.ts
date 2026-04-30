@@ -102,8 +102,8 @@ export const content = {
         body: "BAA included. Encrypted at rest and in transit. Your patient data never trains any model.",
       },
       {
-        title: "Built by operators, not by hospitals",
-        body: "Most healthtech is designed by people who've never written an appeal. Overturn was built by people who have. The workflow assumes you're under-resourced and angry — because you are.",
+        title: "Built for the people doing the work, not the people buying the EHR",
+        body: "Hospital software gets sold to administrators. Overturn gets used by the biller staring down 40 denials at 4pm. We built every screen for the person actually clicking the button, not the one signing the contract.",
       },
     ],
   },
