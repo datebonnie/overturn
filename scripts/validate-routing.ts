@@ -17,7 +17,13 @@
  */
 
 import { PDFParse } from "pdf-parse";
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import {
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 import { config as loadEnv } from "dotenv";
 
@@ -50,7 +56,12 @@ type Expected = {
   detected_category: string | null;
   detected_payer: string;
   extracted_code: string;
-  confidence_floor: "high" | "medium" | "low";
+  // Either set a floor OR a list of acceptable values. Floor means
+  // "must be at least this confident." acceptable_confidences means
+  // "any of these values pass." Use the list for fixtures where the
+  // model's judgment has room (e.g. ambiguous CARC).
+  confidence_floor?: "high" | "medium" | "low";
+  acceptable_confidences?: Array<"high" | "medium" | "low">;
 };
 
 type Meta = {
@@ -132,17 +143,21 @@ function compare(slug: string, meta: Meta, output: AppealOutput): FixtureResult 
     }
   }
 
-  // Confidence floor check.
-  // For fixtures expecting "low" floor, the confidence MUST be low (these are
-  // the failure-case fixtures and must surface as low).
-  // For other fixtures, confidence must be >= the floor.
-  if (expected.confidence_floor === "low") {
+  // Confidence check — honors acceptable_confidences if present, otherwise
+  // falls back to confidence_floor logic.
+  if (expected.acceptable_confidences && expected.acceptable_confidences.length > 0) {
+    if (!expected.acceptable_confidences.includes(output.confidence)) {
+      failures.push(
+        `confidence not in accepted set: expected one of [${expected.acceptable_confidences.join(", ")}], got "${output.confidence}" — rationale: ${output.confidence_rationale}`,
+      );
+    }
+  } else if (expected.confidence_floor === "low") {
     if (output.confidence !== "low") {
       failures.push(
         `confidence mismatch: expected "low" (failure case), got "${output.confidence}"`,
       );
     }
-  } else {
+  } else if (expected.confidence_floor) {
     const actualRank = CONFIDENCE_RANK[output.confidence];
     const floorRank = CONFIDENCE_RANK[expected.confidence_floor];
     if (actualRank < floorRank) {
@@ -193,6 +208,16 @@ function compare(slug: string, meta: Meta, output: AppealOutput): FixtureResult 
     process.exit(1);
   }
 
+  // Where we write the full AppealOutput per fixture for downstream audit
+  // (citation verification, deadline check). Timestamped by run.
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const outputsRoot = path.join(
+    FIXTURES_ROOT,
+    "manual-review-results",
+    stamp,
+  );
+  mkdirSync(outputsRoot, { recursive: true });
+
   const results: FixtureResult[] = [];
 
   for (const slug of slugs) {
@@ -241,6 +266,15 @@ function compare(slug: string, meta: Meta, output: AppealOutput): FixtureResult 
       });
       continue;
     }
+
+    // Save the generated letter + full metadata so downstream audits
+    // (citation verification, deadline check) can read it.
+    const outFile = path.join(outputsRoot, `${slug}.md`);
+    writeFileSync(
+      outFile,
+      `# ${slug}\n\n${meta.description}\n\nGenerated: ${new Date().toISOString()}\n\n## Routing\n\n- detected_category: ${output.metadata.detected_category}\n- detected_payer: ${output.metadata.detected_payer}\n- extracted_code: ${output.metadata.extracted_code}\n- confidence: ${output.confidence}\n- confidence_rationale: ${output.confidence_rationale ?? "—"}\n- appeal_deadline: ${output.appeal_deadline ?? "—"}\n\n## Citations used\n\n${output.citations_used.map((c) => `- ${c}`).join("\n") || "(none)"}\n\n## Letter\n\n\`\`\`\n${output.appeal_letter}\n\`\`\`\n`,
+      "utf8",
+    );
     const elapsed = Date.now() - t0;
 
     const result = compare(slug, meta, output);

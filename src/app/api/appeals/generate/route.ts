@@ -31,7 +31,11 @@ import {
 } from "@/lib/prompts/generate-appeal";
 
 export const runtime = "nodejs";
-export const maxDuration = 120;
+// Server-side timeout. Matches the client AbortController in /app/new
+// so a genuine slow response surfaces as an explicit timeout rather than
+// a stuck spinner. 180s = 3 minutes; Claude-Sonnet-4.5 generations
+// typically complete in 30–60s.
+export const maxDuration = 180;
 
 // ─────────────────────────────────────────────────────────────────────────
 // Validation
@@ -137,14 +141,20 @@ type ParsedBody = {
 
 const RATE_LIMIT_PER_HOUR = 30;
 
-async function checkRateLimit(practiceId: string): Promise<{ ok: true } | { ok: false; retryAfterSeconds: number }> {
+async function checkRateLimit(
+  practiceId: string,
+): Promise<{ ok: true } | { ok: false; retryAfterSeconds: number }> {
   const admin = createAdminClient();
   const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+
+  // Both successful AND failed generations count toward the limit. A buggy
+  // client that retries on failure must not be able to fail-loop and burn
+  // API credits without incrementing the rate limit window.
   const { count, error } = await admin
     .from("audit_log")
     .select("id", { count: "exact", head: true })
     .eq("practice_id", practiceId)
-    .eq("action", "generate_appeal")
+    .in("action", ["generate_appeal", "generate_appeal_failed"])
     .gte("created_at", since);
 
   if (error) {
@@ -152,10 +162,32 @@ async function checkRateLimit(practiceId: string): Promise<{ ok: true } | { ok: 
     // Fail-open: don't block the user on a rate-limit DB hiccup.
     return { ok: true };
   }
-  if ((count ?? 0) >= RATE_LIMIT_PER_HOUR) {
-    return { ok: false, retryAfterSeconds: 60 * 60 };
+  if ((count ?? 0) < RATE_LIMIT_PER_HOUR) {
+    return { ok: true };
   }
-  return { ok: true };
+
+  // Compute precise retry — the oldest row in the window plus an hour
+  // is when the user is back under the cap.
+  const { data: oldest } = await admin
+    .from("audit_log")
+    .select("created_at")
+    .eq("practice_id", practiceId)
+    .in("action", ["generate_appeal", "generate_appeal_failed"])
+    .gte("created_at", since)
+    .order("created_at", { ascending: true })
+    .limit(1)
+    .maybeSingle();
+
+  let retryAfterSeconds = 60 * 60;
+  const oldestCreatedAt = (oldest as { created_at: string } | null)?.created_at;
+  if (oldestCreatedAt) {
+    const oldestMs = new Date(oldestCreatedAt).getTime();
+    const remainingMs = oldestMs + 60 * 60 * 1000 - Date.now();
+    if (remainingMs > 0) {
+      retryAfterSeconds = Math.ceil(remainingMs / 1000);
+    }
+  }
+  return { ok: false, retryAfterSeconds };
 }
 
 // ─────────────────────────────────────────────────────────────────────────

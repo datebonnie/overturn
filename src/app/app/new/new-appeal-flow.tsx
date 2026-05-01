@@ -40,10 +40,12 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
     active: false,
     step: 0,
   });
+  const [stillWorking, setStillWorking] = useState(false);
   const [serverError, setServerError] = useState<{
     reason: string;
     suggestion?: string;
     requestId?: string;
+    retry?: boolean;
   } | null>(null);
 
   // Cycle through progress messages while submitting.
@@ -57,6 +59,19 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
       );
     }, 8000);
     return () => clearInterval(id);
+  }, [progress.active]);
+
+  // Show "Still working..." after 60s so the user knows the request hasn't
+  // hung. The progress cycle keeps animating regardless. The setStillWorking
+  // calls run async (cleanup or timer fire), not during render.
+  useEffect(() => {
+    if (!progress.active) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setStillWorking(false);
+      return;
+    }
+    const id = setTimeout(() => setStillWorking(true), 60_000);
+    return () => clearTimeout(id);
   }, [progress.active]);
 
   async function uploadFile(
@@ -110,6 +125,12 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
     setServerError(null);
     setSubmitting(true);
     setProgress({ active: true, step: 0 });
+
+    // 180-second client-side abort. Server has matching maxDuration so
+    // a genuine hang surfaces as a timeout instead of a stuck spinner.
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 180_000);
+
     try {
       const res = await fetch("/api/appeals/generate", {
         method: "POST",
@@ -120,6 +141,7 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
           denial_document_id: denialUpload?.upload_id ?? null,
           chart_notes_document_id: chartUpload?.upload_id ?? null,
         }),
+        signal: controller.signal,
       });
 
       if (res.status === 422) {
@@ -131,11 +153,15 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
         return;
       }
       if (res.status === 429) {
+        const data = (await res.json().catch(() => ({}))) as {
+          retry_after_seconds?: number;
+        };
+        const minutes = data.retry_after_seconds
+          ? Math.max(1, Math.ceil(data.retry_after_seconds / 60))
+          : 60;
         setServerError({
-          reason:
-            "You've hit the rate limit (30 generations per hour per practice).",
-          suggestion:
-            "Try again in an hour, or contact support if you need a higher limit.",
+          reason: `You've hit the hourly generation limit (30 appeals per hour). Try again in ${minutes} ${minutes === 1 ? "minute" : "minutes"}.`,
+          suggestion: "Need a higher limit? Email support@hioverturn.com.",
         });
         return;
       }
@@ -145,18 +171,30 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
           reason: "Something went wrong on our side.",
           suggestion: "Try again. If it persists, contact support.",
           requestId: data.request_id,
+          retry: true,
         });
         return;
       }
 
       const data = (await res.json()) as { appeal_id: string };
       router.push(`/app/appeals/${data.appeal_id}`);
-    } catch {
+    } catch (err) {
+      if ((err as Error).name === "AbortError") {
+        setServerError({
+          reason: "Generation timed out after 3 minutes.",
+          suggestion:
+            "Claude may have been slow to respond. Try again — the same inputs usually work on a retry.",
+          retry: true,
+        });
+        return;
+      }
       setServerError({
         reason: "Network error.",
         suggestion: "Check your connection and try again.",
+        retry: true,
       });
     } finally {
+      clearTimeout(timeoutId);
       setSubmitting(false);
       setProgress({ active: false, step: 0 });
     }
@@ -188,8 +226,26 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
         />
         {denialUpload || denialText ? (
           <div className="mt-4">
+            {denialUpload &&
+            !denialUpload.extracted_text &&
+            !denialText.trim() ? (
+              <div
+                role="status"
+                className="mb-2.5 rounded-md bg-amber-50 px-3.5 py-2.5 ring-1 ring-inset ring-amber-200"
+              >
+                <p className="text-sm font-semibold text-amber-900">
+                  We couldn&apos;t read your PDF.
+                </p>
+                <p className="mt-0.5 text-sm text-amber-900/90">
+                  This usually happens with scanned or password-protected
+                  files. Paste the denial text below instead.
+                </p>
+              </div>
+            ) : null}
             <Label htmlFor="denial-text" hint="Editable">
-              Extracted denial-letter text
+              {denialUpload?.extracted_text || denialText
+                ? "Extracted denial-letter text"
+                : "Denial-letter text"}
             </Label>
             <textarea
               id="denial-text"
@@ -197,7 +253,7 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
               onChange={(e) => setDenialText(e.target.value)}
               rows={6}
               className="mt-1.5 block w-full rounded-md bg-white px-3.5 py-2.5 text-sm font-mono leading-relaxed text-navy-800 placeholder:text-slate-400 ring-1 ring-inset ring-navy-100 focus:outline-none focus:ring-2 focus:ring-accent-500"
-              placeholder="If the PDF didn't extract cleanly, paste the denial letter text here."
+              placeholder="Paste the denial letter text here..."
             />
           </div>
         ) : null}
@@ -277,6 +333,16 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
                 request_id: {serverError.requestId}
               </p>
             ) : null}
+            {serverError.retry ? (
+              <button
+                type="button"
+                onClick={generate}
+                disabled={submitting}
+                className="mt-3 inline-flex items-center justify-center rounded-md bg-accent-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-600 disabled:opacity-60"
+              >
+                Retry generation
+              </button>
+            ) : null}
           </div>
         ) : null}
 
@@ -298,6 +364,12 @@ export function NewAppealFlow({ practiceName }: { practiceName: string }) {
                 />
               ))}
             </div>
+            {stillWorking ? (
+              <p className="mt-3 text-xs text-navy-200">
+                Still working — Claude is producing the letter. Long denials
+                with rich chart notes can take up to 90 seconds.
+              </p>
+            ) : null}
           </div>
         ) : null}
 

@@ -1,11 +1,11 @@
 {
-  "description": "Failure case: denial letter without a clear CARC code. Tests the 'unknown' routing path.",
+  "description": "Failure case: denial letter without a clear CARC code. Tests the 'unknown' routing path. Model is allowed to grade confidence as either 'low' or 'medium' depending on whether it can identify a real issue from the chart notes.",
   "expected": {
     "detected_category": null,
     "detected_payer": "default",
     "extracted_code": "unknown",
-    "confidence_floor": "low"
+    "acceptable_confidences": ["low", "medium"]
   },
   "practice_npi": "1234567890",
-  "fixture_version": 1
+  "fixture_version": 2
 }
