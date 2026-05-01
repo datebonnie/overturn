@@ -1,0 +1,39 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2025-10-15
+Patient ID (last 4): 9912
+Provider: Sarah Chen, MD
+
+VISIT NOTE
+Routine follow-up visit for acute bronchitis (J20.9), 99213. Visit
+documentation complete and submitted to billing on 2025-10-16.
+
+CLAIM FILING TIMELINE (FROM BILLING SYSTEM AUDIT TRAIL)
+
+  2025-10-16  Initial 837P transmitted via Availity to Aetna.
+              Submission ID: SUB-AETN-1015-99213-9912-001.
+
+  2025-10-17  277CA acceptance received from Aetna clearinghouse.
+              277CA Acceptance ID: 277CA-AETNA-202510170842-99912-A.
+              Confirmation timestamp: 2025-10-17T08:42:13-04:00.
+
+  2025-12-08  Aetna pended claim — requested medical records review.
+              Records sent within 14 days (2025-12-22).
+
+  2026-01-30  No response from Aetna. Practice resubmitted with
+              cover letter referencing original 277CA acceptance.
+
+  2026-04-25  Aetna issued denial citing CO-29 (timely filing).
+
+EVIDENCE OF TIMELY ORIGINAL FILING
+Aetna's stated timely filing limit on this product is 90 days from
+date of service. DOS = 2025-10-15. 90-day window closed 2026-01-13.
+
+Original claim was submitted 2025-10-16, the day after DOS.
+277CA acceptance was received 2025-10-17 — 89 days inside the
+window. Acceptance ID and submission timestamps preserved in the
+Availity practice management report (attached).
+
+The denial appears to disregard the original timely submission.

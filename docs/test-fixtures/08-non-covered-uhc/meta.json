@@ -1,0 +1,11 @@
+{
+  "description": "Non-covered denial. UHC applied exclusion to physical therapy that the plan SPD specifically covers for the indication.",
+  "expected": {
+    "detected_category": "non_covered",
+    "detected_payer": "unitedhealthcare",
+    "extracted_code": "204",
+    "confidence_floor": "medium"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

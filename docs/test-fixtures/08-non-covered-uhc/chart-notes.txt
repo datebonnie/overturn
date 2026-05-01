@@ -1,0 +1,38 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-22
+Patient ID (last 4): 5566
+Provider: Sarah Chen, MD (referring); Jordan Hayes, DPT (rendering)
+
+CHIEF COMPLAINT
+Outpatient physical therapy following acute meniscal injury and
+documented pain.
+
+CLINICAL CONTEXT
+55 y/o female with right knee pain (M25.561) post medial meniscus
+tear (S83.532A) sustained 2026-03-30. Conservative-first approach
+ordered: 8-visit PT course before surgical evaluation. Today's
+session: 4th visit.
+
+SERVICES RENDERED
+- 97110 (therapeutic exercise) — 30 minutes, 2 units. Closed-chain
+  quad/hamstring strengthening, ROM progression.
+- 97140 (manual therapy) — 15 minutes, 1 unit. Soft-tissue
+  mobilization to medial joint line, scar tissue management.
+
+Both codes documented with timed minutes and clinical rationale
+per CMS billing guidance.
+
+PLAN COVERAGE — REASON THIS DENIAL IS WRONG
+Patient's UHC employer-sponsored Choice Plus plan (group # TEST-EMP-202)
+explicitly covers outpatient PT for musculoskeletal injuries up to
+60 visits per calendar year. This is the 4th visit. Per the plan
+SPD §6.4 (Therapy Services), coverage applies when:
+  (a) ordered by an in-network provider — YES, ordered by Sarah Chen, MD.
+  (b) for a covered diagnosis — YES, S83.532A and M25.561 both covered.
+  (c) by a licensed physical therapist — YES, Jordan Hayes, DPT.
+
+The CO-204 denial appears to be an automated exclusion mismatched
+to the wrong policy. Plan SPD section 6.4 (page 47) is attached.

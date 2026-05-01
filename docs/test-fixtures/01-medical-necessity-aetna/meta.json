@@ -1,0 +1,11 @@
+{
+  "description": "Medical necessity denial. Aetna says 99214 isn't justified; chart shows poorly controlled T2DM with comorbidities.",
+  "expected": {
+    "detected_category": "medical_necessity",
+    "detected_payer": "aetna",
+    "extracted_code": "50",
+    "confidence_floor": "medium"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

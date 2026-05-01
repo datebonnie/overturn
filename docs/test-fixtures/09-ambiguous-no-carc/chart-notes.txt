@@ -1,0 +1,15 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-01
+Patient ID (last 4): 0000
+
+ROUTINE PREVENTIVE VISIT
+Adult well-visit, age 38, female. No chronic conditions. Vitals normal.
+ROS negative. PE unremarkable. Routine screening labs ordered.
+No specific complaints. CPT 99213 reported.
+
+(Standard chart note. Nothing about the denial reason here — this
+fixture exercises the 'no CARC code' routing path, not the appeal
+content quality.)

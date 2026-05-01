@@ -1,0 +1,11 @@
+{
+  "description": "Failure case: denial letter without a clear CARC code. Tests the 'unknown' routing path.",
+  "expected": {
+    "detected_category": null,
+    "detected_payer": "default",
+    "extracted_code": "unknown",
+    "confidence_floor": "low"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

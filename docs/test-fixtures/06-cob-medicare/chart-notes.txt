@@ -1,0 +1,31 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-05
+Patient ID (last 4): 1078
+Provider: Sarah Chen, MD
+
+INTAKE / COVERAGE VERIFICATION
+67 y/o male, retired electrical contractor (worked at Northeast
+Power until 2024-12-31; retirement confirmed at intake). Patient
+reports no other active health coverage. Single coverage:
+Traditional Medicare Part B (MBI on file).
+
+NO EMPLOYER GROUP HEALTH PLAN
+- Patient confirmed retirement effective 2024-12-31.
+- Spouse status: widower since 2022; no spousal coverage.
+- No COBRA election (lapsed 2025-06).
+- No other private supplemental policy on file.
+
+Per 42 USC 1395y(b) Medicare Secondary Payer rules, Medicare is
+the primary and only payer.
+
+VISIT NOTE
+Follow-up for stable CAD (I25.10) and hyperlipidemia (E78.5).
+Annual wellness components reviewed. Medications adjusted (atorvastatin
+40 mg from 20 mg). 99214 billed appropriately for moderate complexity.
+
+The CO-22 denial appears to be an MSP database mismatch. Patient
+intake form (signed and dated 2026-04-05) confirming no other
+coverage is attached.

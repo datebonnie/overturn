@@ -1,0 +1,11 @@
+{
+  "description": "Coding denial. UHC denied 99213 billed same day as 11042 (no modifier 25). Chart documents distinct E/M.",
+  "expected": {
+    "detected_category": "coding",
+    "detected_payer": "unitedhealthcare",
+    "extracted_code": "16",
+    "confidence_floor": "medium"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

@@ -1,0 +1,42 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-03-15
+Patient ID (last 4): 4471
+Provider: Sarah Chen, MD
+
+CHIEF COMPLAINT
+Follow-up for poorly controlled type 2 diabetes mellitus.
+
+HISTORY OF PRESENT ILLNESS
+58 y/o female with longstanding T2DM (E11.9) returns for medication
+intensification. HbA1c drawn 03/01/2026 = 9.2% (up from 8.4% in
+12/2025). Patient reports increased thirst and nocturia over last
+6 weeks. She has been adherent to metformin 1000 mg BID and
+lifestyle counseling but acknowledges weight gain (current BMI 38).
+She also has hypertension (I10) on lisinopril 20 mg and early
+diabetic neuropathy (E11.40) with bilateral foot tingling
+documented since 2025-09.
+
+EXAM
+BP 148/92. BMI 38.1. Foot exam: decreased monofilament sensation
+distally, no ulceration, pulses intact.
+
+ASSESSMENT / PLAN
+1. T2DM, uncontrolled (E11.9) — HbA1c 9.2% triggers intensification
+   per ADA Standards of Care 2025 §11. Initiating semaglutide
+   0.25 mg weekly. Counseled on injection technique and titration.
+2. Hypertension (I10) — increase lisinopril to 30 mg.
+3. Diabetic neuropathy (E11.40) — gabapentin 100 mg TID, follow-up
+   neurology referral.
+4. Comprehensive foot exam documented.
+5. Diabetic care plan revised with patient education materials.
+
+VISIT TIME / COMPLEXITY
+35 minutes face-to-face. Moderate to high complexity decision-making
+across three problems. Counseling and care coordination >50% of visit.
+CPT 99214 selected per 2021 AMA E/M coding guidelines (high MDM:
+multiple chronic illnesses with progression).
+
+Plan: RTC 6 weeks for HbA1c recheck.

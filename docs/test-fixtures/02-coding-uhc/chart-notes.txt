@@ -1,0 +1,32 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-02
+Patient ID (last 4): 5523
+Provider: James Park, DO
+
+VISIT NOTE — Two distinct, separately identifiable encounters on same day.
+
+ENCOUNTER 1: E/M for chronic low back pain (M54.5)
+Patient is a 42 y/o male with 6-month history of mechanical low back
+pain, evaluated today for ongoing symptoms unrelated to today's
+laceration. Pain 6/10, worse with prolonged sitting. Discussed PT
+referral, NSAID trial, and ergonomic adjustments. Reviewed prior
+imaging from 2025-11. ROS otherwise unremarkable. ~15 min spent
+on history, exam, and counseling for this complaint.
+
+ASSESSMENT/PLAN (encounter 1):
+- M54.5 chronic LBP — referring to PT, prescribing meloxicam 15 mg.
+- Follow-up 4 weeks.
+
+ENCOUNTER 2: Procedure — CPT 11042
+Patient ALSO presented today with a fresh forearm laceration sustained
+2 hours prior to visit (S81.802A — laceration, right forearm). Wound
+debridement and complex repair performed under local anesthesia
+(2% lidocaine). 4.5 cm laceration, debrided to subcutaneous tissue,
+irrigated, closed in layers. Tetanus updated.
+
+Documentation supports separately identifiable E/M (LBP follow-up)
+distinct from same-day procedure (laceration repair). Modifier 25
+should have been appended to 99213. Resubmitting with modifier 25.

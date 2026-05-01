@@ -1,0 +1,11 @@
+{
+  "description": "Experimental denial. Cigna labeled semaglutide for T2DM as experimental despite FDA approval.",
+  "expected": {
+    "detected_category": "experimental",
+    "detected_payer": "cigna",
+    "extracted_code": "55",
+    "confidence_floor": "medium"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

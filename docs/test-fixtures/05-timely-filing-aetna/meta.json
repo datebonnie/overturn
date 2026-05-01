@@ -1,0 +1,11 @@
+{
+  "description": "Timely filing denial. Aetna says claim filed late but practice has 277CA acceptance from clearinghouse within filing window.",
+  "expected": {
+    "detected_category": "timely_filing",
+    "detected_payer": "aetna",
+    "extracted_code": "29",
+    "confidence_floor": "medium"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

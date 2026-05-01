@@ -1,0 +1,38 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-18
+Patient ID (last 4): 3344
+Provider: James Park, DO
+
+CHIEF COMPLAINT
+Type 2 diabetes mellitus with hyperglycemia, inadequately controlled
+on dual oral therapy. Initiating GLP-1 agonist.
+
+CLINICAL CONTEXT
+51 y/o female with E11.65 (T2DM with hyperglycemia) and E66.01
+(severe obesity, BMI 35.4). HbA1c 8.5% (today). Failed metformin
+1000 mg BID + sitagliptin 100 mg daily after 9 months. Cardiovascular
+risk profile elevated (HTN, dyslipidemia, family history of CAD).
+
+INDICATION FOR SEMAGLUTIDE
+Per ADA Standards of Care 2025 §11, GLP-1 receptor agonists are
+recommended as second-line therapy for T2DM patients with HbA1c
+above target despite metformin, especially in those with established
+ASCVD risk factors or obesity. Semaglutide (Ozempic / Wegovy) is
+FDA-approved for both type 2 diabetes mellitus (Ozempic, since 2017)
+AND chronic weight management in patients with BMI ≥30 (Wegovy,
+since 2021).
+
+This patient meets BOTH FDA-approved indications:
+- T2DM (E11.65) — Ozempic FDA-approved indication.
+- Severe obesity (BMI 35.4, E66.01) — Wegovy FDA-approved indication.
+
+Cigna's own published Coverage Policy on GLP-1 agonists (Coverage
+Policy Number 0501) covers semaglutide for T2DM after metformin
+failure. This patient's chart documents 9 months of metformin failure.
+
+The CO-55 denial appears to mischaracterize semaglutide as
+experimental. It is not — it has been FDA-approved for this exact
+indication for nearly a decade.

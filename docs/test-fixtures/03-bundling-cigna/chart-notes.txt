@@ -1,0 +1,35 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-10
+Patient ID (last 4): 7234
+Provider: Sarah Chen, MD
+
+CHIEF COMPLAINT
+Two separate concerns: (1) acute upper respiratory infection,
+(2) chronic right knee osteoarthritis pain.
+
+ENCOUNTER 1 — Office visit (CPT 99213)
+40 y/o male presents with 4-day history of nasal congestion, sore
+throat, mild fever to 100.2°F. No SOB, no productive cough. Exam:
+TM clear, oropharynx mildly erythematous, no exudate, lungs clear.
+Diagnosed acute URI (J06.9). Symptomatic management discussed.
+
+ENCOUNTER 2 — Therapeutic procedure (CPT 20610-XS)
+Patient ALSO requested injection for ongoing R knee OA (M17.11),
+documented since 2024. He has tried NSAIDs and PT without sufficient
+relief. Standard intra-articular injection of right knee performed:
+20610 — arthrocentesis/aspiration/injection, major joint. Sterile
+prep, lateral approach, aspirated 5 mL serous fluid, injected
+40 mg triamcinolone with 2 mL 1% lidocaine.
+
+DOCUMENTATION OF DISTINCT SERVICES
+- E/M (URI): different chief complaint, different diagnosis (J06.9),
+  cognitive evaluation only.
+- Injection (knee OA): separate diagnosis (M17.11), separate
+  anatomic site (right knee, distinct from upper respiratory tract),
+  procedural service with its own RVU value.
+
+These services are independent and warrant unbundling per NCCI
+Policy Manual Ch. 1. Modifier XS (separate structure) applied.

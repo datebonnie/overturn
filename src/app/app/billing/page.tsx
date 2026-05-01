@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { signOutAction } from "../actions";
 import { startCheckoutAction, openPortalAction } from "./actions";
 
 export const metadata: Metadata = {
@@ -57,45 +54,7 @@ export default async function BillingPage({
   const showPortalCTA = status === "active" || status === "past_due";
 
   return (
-    <div className="min-h-screen bg-navy-50/30">
-      <header className="border-b border-navy-100 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
-          <Link
-            href="/app"
-            aria-label="Overturn dashboard"
-            className="inline-flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-sm"
-          >
-            <Image
-              src="/logo.png"
-              alt=""
-              width={32}
-              height={32}
-              priority
-              className="h-8 w-8 flex-shrink-0"
-            />
-            <span className="text-xl font-bold tracking-tight text-navy-800">
-              Overturn
-            </span>
-          </Link>
-          <nav className="flex items-center gap-6">
-            <Link
-              href="/app"
-              className="text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors"
-            >
-              Dashboard
-            </Link>
-            <form action={signOutAction}>
-              <button
-                type="submit"
-                className="text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors"
-              >
-                Sign out
-              </button>
-            </form>
-          </nav>
-        </div>
-      </header>
-
+    <>
       <main className="mx-auto max-w-3xl px-5 sm:px-8 py-12">
         {session_id ? <Banner kind="success">Subscription started. You&apos;re on Overturn Pro.</Banner> : null}
         {cancelled ? <Banner kind="info">Checkout cancelled. You&apos;re still on your trial.</Banner> : null}
@@ -193,7 +152,7 @@ export default async function BillingPage({
           paid period.
         </p>
       </main>
-    </div>
+    </>
   );
 }
 

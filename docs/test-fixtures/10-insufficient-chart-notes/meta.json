@@ -1,0 +1,11 @@
+{
+  "description": "Failure case: denial is clear (CO-50 medical necessity) but chart notes are too vague to support a credible appeal. Tests low-confidence output.",
+  "expected": {
+    "detected_category": "medical_necessity",
+    "detected_payer": "aetna",
+    "extracted_code": "50",
+    "confidence_floor": "low"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

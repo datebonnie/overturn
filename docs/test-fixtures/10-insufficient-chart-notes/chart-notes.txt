@@ -1,0 +1,15 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-20
+Patient ID (last 4): 2222
+
+VISIT NOTE
+Patient seen for follow-up.
+Doing fine.
+RTC PRN.
+
+(Intentionally sparse chart note. No clinical findings, no diagnoses
+specified beyond the routine code, no rationale documented for the
+99214 level. Not enough material to support a medical-necessity appeal.)

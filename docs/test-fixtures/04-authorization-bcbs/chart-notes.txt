@@ -1,0 +1,35 @@
+SYNTHETIC TEST DATA — NOT REAL PHI
+
+Practice: Demo Family Medicine of NJ
+NPI: 1234567890
+Date of service: 2026-04-12
+Patient ID (last 4): 8123
+Provider: James Park, DO
+
+CHIEF COMPLAINT
+Right knee MRI for evaluation of suspected medial meniscal tear.
+
+PRIOR AUTHORIZATION RECORD
+Prior authorization request submitted to Horizon BCBS NJ on
+2026-04-06 by our office. Approved by Horizon BCBS NJ on 2026-04-08.
+
+  Authorization number:   PA-2026-04471
+  Approving entity:       Horizon BCBS NJ Utilization Management
+  Service authorized:     CPT 73721 (MRI right knee, without contrast)
+  Effective dates:        2026-04-08 through 2026-05-08
+  Approval letter on file in patient record (received 2026-04-08).
+
+CLINICAL CONTEXT
+Patient with right knee OA (M17.11) and acute injury (S83.532A —
+medial meniscus tear, right knee, initial encounter) sustained in a
+fall on 2026-03-30. Failed conservative management (RICE, NSAIDs,
+4 weeks PT). Persistent mechanical symptoms (locking, giving way).
+MRI ordered to evaluate meniscal injury and guide surgical referral.
+
+MRI was performed on 2026-04-12 within the authorization window.
+Findings: medial meniscus complex tear, grade III chondral wear
+medial femoral condyle. Patient referred to ortho.
+
+The denial appears to be a retroactive reversal of an authorization
+that was properly granted prior to service. Original authorization
+letter (PA-2026-04471) is attached.

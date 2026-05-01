@@ -1,0 +1,11 @@
+{
+  "description": "Authorization denial. BCBS retro-denied MRI knee but prior auth #PA-2026-04471 was actually granted on 2026-04-08.",
+  "expected": {
+    "detected_category": "authorization",
+    "detected_payer": "bcbs",
+    "extracted_code": "197",
+    "confidence_floor": "medium"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}

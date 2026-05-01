@@ -1,0 +1,11 @@
+{
+  "description": "Coordination of benefits denial. Medicare claims another payer is primary; patient is 67, retired, with Medicare Part B as sole coverage.",
+  "expected": {
+    "detected_category": "cob",
+    "detected_payer": "medicare",
+    "extracted_code": "22",
+    "confidence_floor": "medium"
+  },
+  "practice_npi": "1234567890",
+  "fixture_version": 1
+}
