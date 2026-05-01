@@ -60,14 +60,22 @@ export default async function AppHomePage({
               Overturn
             </span>
           </Link>
-          <form action={signOutAction}>
-            <button
-              type="submit"
+          <nav className="flex items-center gap-6">
+            <Link
+              href="/app/billing"
               className="text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors"
             >
-              Sign out
-            </button>
-          </form>
+              Billing
+            </Link>
+            <form action={signOutAction}>
+              <button
+                type="submit"
+                className="text-sm font-medium text-navy-600 hover:text-navy-800 transition-colors"
+              >
+                Sign out
+              </button>
+            </form>
+          </nav>
         </div>
       </header>
 

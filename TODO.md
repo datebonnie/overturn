@@ -40,6 +40,8 @@ nothing on this list is optional.
 - [ ] DMARC graduation from `p=none` (monitor) to `p=quarantine` then `p=reject` after ~2 weeks of clean reports.
 - [ ] Vercel Pro upgrade ($20/mo) if not already on it; required for HIPAA add-on attachment.
 - [ ] Replace plain-text refund policy in welcome email with a versioned, lawyer-approved doc.
+- [ ] **Trial-expiry gate.** When `practices.trial_ends_at` passes and `subscription_status === 'trial'`, every `/app/*` route except `/app/billing` should redirect to `/app/billing`. Same for `subscription_status === 'cancelled'`. Implement as a server-side guard helper called from each protected page (or as a per-route layout).
+- [ ] Rename `src/middleware.ts` to `src/proxy.ts` per the Next.js 16 deprecation warning. No behavior change; renames the file convention.
 
 ---
 
