@@ -112,7 +112,7 @@ export const content = {
     eyebrow: "PRICING",
     headline: "One price. Unlimited appeals. No per-claim charges.",
     plan: {
-      name: "Practice",
+      name: "Overturn Pro",
       price: "$199",
       period: "/month",
       features: [
