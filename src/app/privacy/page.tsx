@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const LAST_UPDATED = "April 30, 2026";
+const LAST_UPDATED = "May 3, 2026";
+const VERSION = "1.0";
 
 export default function PrivacyPage() {
   return (
@@ -27,7 +28,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="mt-6 text-sm font-medium text-slate-500">
-                Last updated: {LAST_UPDATED}
+                Last updated: {LAST_UPDATED} · Version {VERSION}
               </p>
               <div className="mt-8 space-y-5 text-lg leading-relaxed text-slate-700">
                 <p>
@@ -51,99 +52,64 @@ export default function PrivacyPage() {
         <article className="bg-white pb-20 sm:pb-24 lg:pb-32">
           <div className="mx-auto max-w-3xl px-5 sm:px-8 space-y-12">
             <Reveal>
-              <Clause heading="1. Who we are">
+              <Clause heading="1. Information we collect">
                 <p>
-                  Overturn Solutions LLC is a New Jersey limited liability
-                  company that provides AI-powered insurance denial appeal
-                  generation software for small medical practices. You can
-                  reach us at <MailLink address="hello@hioverturn.com" />.
+                  Practice information you provide during signup or in
+                  Settings: practice name, address, phone, NPI, and TIN. These
+                  are used as letterhead on every appeal we generate, so
+                  accuracy matters to your payers.
+                </p>
+                <p>
+                  Account information: your email and a salted-and-hashed
+                  password. Password handling is managed by Supabase Auth — we
+                  never see your plaintext password.
+                </p>
+                <p>
+                  Usage data: appeals generated, status transitions you make
+                  (sent, overturned, lost, withdrawn), and audit log entries
+                  that record who did what and when.
+                </p>
+                <p>
+                  Payment information: handled by Stripe through its hosted
+                  checkout and customer portal. We never see or store your full
+                  card number.
+                </p>
+                <p>
+                  Denial letters and chart notes you upload: these typically
+                  contain Protected Health Information (PHI) and are governed
+                  by HIPAA and our BAA. See §3.
                 </p>
               </Clause>
             </Reveal>
 
             <Reveal>
-              <Clause heading="2. What information we collect">
-                <SubHeading>Information you give us directly:</SubHeading>
-                <List>
-                  <li>
-                    Account information when you sign up: name, email, practice
-                    name, role, specialty, monthly claim volume, billing
-                    address.
-                  </li>
-                  <li>
-                    Payment information: handled by Stripe. We never see or
-                    store your full credit card number.
-                  </li>
-                  <li>
-                    Communications: emails, support tickets, demo call
-                    recordings (with your consent).
-                  </li>
-                </List>
-
-                <SubHeading>Information you upload to use the service:</SubHeading>
-                <List>
-                  <li>
-                    Denial letters and Explanation of Benefits (EOB) documents.
-                  </li>
-                  <li>
-                    Patient chart notes and clinical documentation you choose
-                    to provide.
-                  </li>
-                  <li>Generated appeal letters.</li>
-                </List>
+              <Clause heading="2. How we use information">
                 <p>
-                  This information may include Protected Health Information
-                  (PHI). PHI is treated under HIPAA rules and the BAA, not just
-                  under this policy.
+                  To provide the service: generate appeal letters tailored to
+                  your denial and chart notes, render them as PDF or DOCX on
+                  demand, and let you track outcomes through your appeal
+                  lifecycle.
                 </p>
-
-                <SubHeading>Information we collect automatically:</SubHeading>
-                <List>
-                  <li>
-                    Log data: IP address, browser type, device type, pages
-                    visited, timestamps, referring URLs.
-                  </li>
-                  <li>
-                    Cookies and similar technologies: used for authentication,
-                    session management, and basic analytics. We do not use
-                    third-party advertising trackers.
-                  </li>
-                  <li>
-                    Usage data: features used, appeals generated, error
-                    reports.
-                  </li>
-                </List>
-              </Clause>
-            </Reveal>
-
-            <Reveal>
-              <Clause heading="3. How we use information">
-                <p>We use the information we collect to:</p>
-                <List>
-                  <li>
-                    Provide the service (generate appeals, track deadlines,
-                    deliver results to you).
-                  </li>
-                  <li>Process payments and manage your account.</li>
-                  <li>
-                    Communicate with you about your account, support requests,
-                    and product updates.
-                  </li>
-                  <li>
-                    Improve the service through aggregated, de-identified
-                    analytics.
-                  </li>
-                  <li>Comply with legal obligations.</li>
-                </List>
+                <p>
+                  To communicate with you: send transactional emails (welcome,
+                  trial reminders, payment failures) and respond to support
+                  requests. We do not send marketing emails to paying customers
+                  without explicit opt-in.
+                </p>
+                <p>
+                  To maintain audit logs for compliance: every PHI access,
+                  edit, download, and status change is recorded. This is
+                  required for HIPAA Security Rule compliance and for your own
+                  audit trail if a payer disputes a record.
+                </p>
+                <p>To process payments: Stripe handles billing on our behalf.</p>
 
                 <SubHeading>What we never do with your data:</SubHeading>
                 <List>
                   <li>
                     We never sell or rent your information to third parties.
                   </li>
-                  <li>
-                    We never use PHI to train AI models. Period.
-                  </li>
+                  <li>We never use PHI to train AI models. Period.</li>
                   <li>
                     We never share patient information with insurance carriers,
                     advertisers, data brokers, or any party outside the
@@ -155,94 +121,87 @@ export default function PrivacyPage() {
             </Reveal>
 
             <Reveal>
-              <Clause heading="4. How long we keep information">
+              <Clause heading="3. PHI handling">
                 <p>
-                  <strong className="font-semibold text-navy-800">
-                    Source documents (denial letters, chart notes, supporting
-                    clinical documentation):
-                  </strong>{" "}
-                  Deleted within 24 hours of appeal generation. We process this
-                  data, we do not archive it.
+                  All PHI is encrypted in transit using TLS 1.3 and at rest
+                  using AES-256.
                 </p>
                 <p>
-                  <strong className="font-semibold text-navy-800">
-                    Generated appeal letters:
-                  </strong>{" "}
-                  Retained for the life of your account so you can re-download,
-                  audit, or resubmit. Deleted within 30 days of account
-                  termination unless you request earlier deletion.
+                  Access is restricted by Postgres row-level security to the
+                  practice that uploaded the data. No other practice can read
+                  your records. Internal Overturn personnel access PHI only
+                  when required for support, debugging, or compliance, and
+                  every access is logged.
                 </p>
                 <p>
-                  <strong className="font-semibold text-navy-800">
-                    Account and billing data:
-                  </strong>{" "}
-                  Retained for the life of your account plus 7 years after
-                  termination, as required by tax and business records law.
+                  We do not share PHI with any third party without an executed
+                  Business Associate Agreement. Subprocessors that handle PHI
+                  are listed in §4 with their BAA status.
                 </p>
                 <p>
-                  <strong className="font-semibold text-navy-800">
-                    Usage logs:
-                  </strong>{" "}
-                  Retained for up to 12 months in identifiable form, then
-                  aggregated or deleted.
-                </p>
-                <p>
-                  You can request deletion of your account and associated data
-                  at any time by emailing{" "}
-                  <MailLink address="privacy@hioverturn.com" />. We&apos;ll
-                  confirm deletion within 30 days.
+                  You can request export of your stored data or deletion of
+                  your account and PHI at any time. See §6.
                 </p>
               </Clause>
             </Reveal>
 
             <Reveal>
-              <Clause heading="5. Who we share information with">
+              <Clause heading="4. Data sharing">
                 <p>
-                  We share information only with the service providers required
-                  to operate Overturn:
+                  We share data only with the service providers required to
+                  operate Overturn:
                 </p>
                 <List>
                   <li>
                     <strong className="font-semibold text-navy-800">
-                      Anthropic, PBC
-                    </strong>{" "}
-                    (AI model provider): processes appeal generation requests
-                    under a Business Associate Agreement. Anthropic does not
-                    train models on customer data submitted via the API.
-                  </li>
-                  <li>
-                    <strong className="font-semibold text-navy-800">
-                      Supabase, Inc.
-                    </strong>{" "}
-                    (database and authentication): stores account data and
-                    generated appeal letters under a BAA.
-                  </li>
-                  <li>
-                    <strong className="font-semibold text-navy-800">
-                      Vercel, Inc.
-                    </strong>{" "}
-                    (hosting): serves the application. Configured to never
-                    persist PHI in logs.
-                  </li>
-                  <li>
-                    <strong className="font-semibold text-navy-800">
                       Stripe, Inc.
                     </strong>{" "}
-                    (payment processing): handles billing only. Never receives
-                    PHI.
+                    — payment processing. Receives your name, email, and
+                    payment method (entered directly into Stripe Elements).
+                    Never receives PHI.
                   </li>
                   <li>
                     <strong className="font-semibold text-navy-800">
                       Resend, Inc.
                     </strong>{" "}
-                    (transactional email): sends account notifications. Never
-                    receives PHI in email content.
+                    — transactional email delivery. Receives your email
+                    address and the content of lifecycle emails (welcome,
+                    trial reminders, payment failures). Templates are non-PHI
+                    by design; we never send PHI through this path.
+                  </li>
+                  <li>
+                    <strong className="font-semibold text-navy-800">
+                      Anthropic, PBC
+                    </strong>{" "}
+                    — AI model provider that generates the appeal letters.
+                    Receives the denial letter text, chart notes, and practice
+                    letterhead for each generation. BAA status: pending
+                    execution at launch — until BAA is signed, real PHI cannot
+                    be processed; the service operates with test data only
+                    during this period.
+                  </li>
+                  <li>
+                    <strong className="font-semibold text-navy-800">
+                      Supabase, Inc.
+                    </strong>{" "}
+                    — database hosting and authentication. Stores all account
+                    data including any PHI you upload. BAA status: pending
+                    execution at launch — until BAA is signed, real PHI cannot
+                    be processed; the service operates with test data only
+                    during this period.
+                  </li>
+                  <li>
+                    <strong className="font-semibold text-navy-800">
+                      Vercel, Inc.
+                    </strong>{" "}
+                    — application hosting. Configured to never persist PHI in
+                    logs. BAA executed.
                   </li>
                 </List>
                 <p>
-                  Each of these providers is bound by a written agreement that
-                  limits their use of your information to providing services on
-                  our behalf. We do not share information with any other third
+                  Each provider is bound by a written agreement that limits
+                  their use of your information to providing services on our
+                  behalf. We do not share information with any other third
                   parties except as required by law or with your explicit
                   consent.
                 </p>
@@ -250,135 +209,87 @@ export default function PrivacyPage() {
             </Reveal>
 
             <Reveal>
-              <Clause heading="6. How we protect information">
-                <List>
-                  <li>All data is encrypted in transit using TLS 1.3.</li>
-                  <li>All data is encrypted at rest using AES-256.</li>
-                  <li>
-                    Access to production systems is restricted, logged, and
-                    reviewed.
-                  </li>
-                  <li>
-                    We follow the HIPAA Security Rule and maintain reasonable
-                    administrative, physical, and technical safeguards.
-                  </li>
-                  <li>
-                    We perform regular security reviews and address
-                    vulnerabilities promptly.
-                  </li>
-                </List>
+              <Clause heading="5. Data retention">
                 <p>
-                  No system is perfectly secure. If a breach affecting your
-                  information occurs, we will notify you and the relevant
-                  authorities as required by HIPAA and applicable state law.
+                  <strong className="font-semibold text-navy-800">
+                    Source uploads (denial PDFs, chart notes):
+                  </strong>{" "}
+                  deleted 24 hours after appeal generation. We process this
+                  data; we do not archive it.
+                </p>
+                <p>
+                  <strong className="font-semibold text-navy-800">
+                    Generated appeal letters:
+                  </strong>{" "}
+                  retained for the life of your account so you can re-download,
+                  audit, or resubmit. Deleted 90 days after account
+                  termination unless you request earlier deletion.
+                </p>
+                <p>
+                  <strong className="font-semibold text-navy-800">
+                    Account and billing data:
+                  </strong>{" "}
+                  retained for the life of your account plus 7 years after
+                  termination, as required by tax and business records law.
+                </p>
+                <p>
+                  <strong className="font-semibold text-navy-800">
+                    Audit logs:
+                  </strong>{" "}
+                  retained for the period required by HIPAA and applicable law
+                  (typically 6 years per 45 CFR §164.316(b)(2)(i)).
+                </p>
+                <p>
+                  <strong className="font-semibold text-navy-800">
+                    Cancelled accounts:
+                  </strong>{" "}
+                  data preserved for 90 days after cancellation, then deleted,
+                  unless you extend the retention window in writing.
                 </p>
               </Clause>
             </Reveal>
 
             <Reveal>
-              <Clause heading="7. Your rights">
-                <p>
-                  Depending on where you live, you may have the right to:
-                </p>
+              <Clause heading="6. Your rights">
+                <p>You have the right to:</p>
                 <List>
+                  <li>Access the personal information we have about you.</li>
                   <li>
-                    Access the personal information we have about you.
+                    Receive a portable copy of your information in a
+                    machine-readable format.
+                  </li>
+                  <li>
+                    Request deletion of your account and associated data.
                   </li>
                   <li>Correct inaccurate information.</li>
-                  <li>Request deletion of your information.</li>
-                  <li>Object to or restrict certain processing.</li>
-                  <li>Receive a portable copy of your information.</li>
                   <li>
-                    Opt out of marketing communications (you can also
-                    unsubscribe from any email).
+                    Opt out of marketing communications. Transactional emails
+                    about your account (welcome, trial state changes, billing
+                    failures) remain part of the service and cannot be opted
+                    out of while you maintain an active account.
                   </li>
                 </List>
                 <p>
                   To exercise any of these rights, email{" "}
-                  <MailLink address="privacy@hioverturn.com" />. We&apos;ll
-                  respond within 30 days.
+                  <MailLink address="privacy@hioverturn.com" />. We respond
+                  within 30 days.
                 </p>
               </Clause>
             </Reveal>
 
             <Reveal>
-              <Clause heading="8. Cookies">
-                <p>We use cookies for the following purposes only:</p>
+              <Clause heading="7. Contact">
                 <List>
                   <li>
-                    <strong className="font-semibold text-navy-800">
-                      Strictly necessary:
-                    </strong>{" "}
-                    authentication and session management.
+                    Privacy questions:{" "}
+                    <MailLink address="privacy@hioverturn.com" /> (alias setup
+                    pending; route via{" "}
+                    <MailLink address="support@hioverturn.com" /> until
+                    configured)
                   </li>
                   <li>
-                    <strong className="font-semibold text-navy-800">
-                      Functional:
-                    </strong>{" "}
-                    remembering your preferences (e.g. timezone).
-                  </li>
-                  <li>
-                    <strong className="font-semibold text-navy-800">
-                      Analytics:
-                    </strong>{" "}
-                    anonymized usage statistics to improve the product.
-                  </li>
-                </List>
-                <p>
-                  We do not use advertising cookies, retargeting cookies, or
-                  third-party tracking pixels. You can disable non-essential
-                  cookies in your browser settings without breaking the
-                  service.
-                </p>
-              </Clause>
-            </Reveal>
-
-            <Reveal>
-              <Clause heading="9. Children">
-                <p>
-                  Overturn is a B2B service intended for healthcare
-                  professionals. We do not knowingly collect information from
-                  anyone under 18. If we learn that we have, we will delete it
-                  promptly.
-                </p>
-              </Clause>
-            </Reveal>
-
-            <Reveal>
-              <Clause heading="10. International users">
-                <p>
-                  Overturn is operated from the United States and intended for
-                  U.S. healthcare practices. If you access the service from
-                  outside the U.S., your information will be transferred to and
-                  processed in the United States.
-                </p>
-              </Clause>
-            </Reveal>
-
-            <Reveal>
-              <Clause heading="11. Changes to this policy">
-                <p>
-                  We may update this Privacy Policy as the product or the law
-                  evolves. We&apos;ll post the updated version here with a new
-                  &quot;Last updated&quot; date. For material changes, we&apos;ll
-                  notify you by email.
-                </p>
-              </Clause>
-            </Reveal>
-
-            <Reveal>
-              <Clause heading="12. Contact us">
-                <p>Questions, requests, or concerns about this policy:</p>
-                <List>
-                  <li>
-                    Email: <MailLink address="privacy@hioverturn.com" />
-                  </li>
-                  <li>
-                    General contact:{" "}
-                    <MailLink address="hello@hioverturn.com" />
-                  </li>
-                  <li>
-                    Mail: Overturn Solutions LLC, [Your NJ Business Address]
+                    General support:{" "}
+                    <MailLink address="support@hioverturn.com" />
                   </li>
                 </List>
               </Clause>
@@ -422,9 +333,7 @@ function Clause({
 }
 
 function SubHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="font-semibold text-navy-800">{children}</p>
-  );
+  return <p className="font-semibold text-navy-800">{children}</p>;
 }
 
 function List({ children }: { children: React.ReactNode }) {
